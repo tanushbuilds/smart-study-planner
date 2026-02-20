@@ -10,4 +10,9 @@ def predict_hours(difficulty, days_left, past_score, priority):
     
     prediction = model.predict(features)
     
-    return round(prediction[0], 2)
+    predicted = prediction[0]
+
+    # Prevent negative or tiny hours
+    predicted = max(0.5, predicted)
+
+    return round(predicted, 2)
